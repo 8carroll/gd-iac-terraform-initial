@@ -58,9 +58,14 @@ data "aws_ami" "latest_amazonlinux2_ami" {
 
 # CREATES COMPUTE INSTANCES
 module "compute" {
-  source         = "./compute"
+  source         = "./modules/compute"
   ami_id         = data.aws_ami.latest_amazonlinux2_ami.id
   subnet_id      = module.iac_vpc.public_subnet_attributes_by_az.us-west-2a.id
-  // forensic_sg_id = module.vpc.forensic_sg_id
   initial_sg_id   = module.initial-security-group.security_group_id
+}
+
+# CREATES S3 BUCKET
+module "s3_bucket" {
+  source = "./modules/s3"
+  vpc_id = module.iac_vpc.vpc_attributes.id
 }
