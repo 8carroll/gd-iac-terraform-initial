@@ -3,4 +3,3 @@
 
 # --- modules/s3/variables.tf ---
 
-variable "vpc_id" {}

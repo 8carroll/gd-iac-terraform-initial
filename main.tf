@@ -64,8 +64,3 @@ module "compute" {
   initial_sg_id   = module.initial-security-group.security_group_id
 }
 
-# CREATES S3 BUCKET
-module "s3_bucket" {
-  source = "./modules/s3"
-  vpc_id = module.iac_vpc.vpc_attributes.id
-}
